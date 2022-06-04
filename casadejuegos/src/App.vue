@@ -1,12 +1,29 @@
 <template>
+<div>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <!-- <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link> -->
   </nav>
-  <router-view/>
+  <router-view class="container"/>
+</div>
+  
 </template>
 
+<script>
+import Hero from '@/components/Hero.vue'
+
+
+export default {
+  name: 'TODO',
+  components: {
+    Hero,
+  }
+}
+</script>
+
 <style>
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
