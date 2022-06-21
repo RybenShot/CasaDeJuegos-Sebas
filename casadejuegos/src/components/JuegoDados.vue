@@ -1,5 +1,5 @@
 <template>
-  <div class="app BGJuegos">
+  <div class="app">
     <div class="container">
       <br />
 
@@ -16,10 +16,8 @@
 
         <br />
 
+        <!-- OPCIONES DE LADOS   -->
         <div class="">
-          <!-- <p>Numero de LADOS </p> -->
-          <!-- <br> -->
-
           <div class="columns is-mobile">
             <div class="column">
               <p class="is-3"><i class="fas fa-dice"></i></p>
@@ -79,43 +77,76 @@
             </div>
           </div>
         </div>
+
+        <!-- AVANZADO -->
+        <Transition>
+          <div v-if="masOpciones" class="card p-2 mt-2">
+            <h3>Avanzado</h3>
+            <dir class="columns">
+              <div class="column">
+                <h4>Fatal</h4>
+                <input class="p-2" type="number" v-model="AvFatal" placeholder="Fatal">
+                <input class="p-2" type="number" v-model="AvFatal2" placeholder="Fatal">
+                <input class="p-2" type="number" v-model="AvFatal3" placeholder="Fatal">
+              </div>
+              <div class="column">
+                <h4>Acierto</h4>
+                <input class="p-2" type="number" v-model="AvAcierto" placeholder="Acierto">
+                <input class="p-2" type="number" v-model="AvAcierto2" placeholder="Acierto">
+                <input class="p-2" type="number" v-model="AvAcierto3" placeholder="Acierto">
+              </div>
+            </dir>
+            
+            
+            
+          </div>
+        </Transition>
       </div>
       <br />
 
-      <!-- BOTOND DE LANZAR DADOS -->
+      <!-- BOTON DE LANZAR DADOS -->
       <!-- Aqui indicamos ya el minimo del resultado que debe salir y el maximo lo indicamos con "NDeLados" -->
-      <button
-        @click="tirarDados(1)"
-        class="button is-success is-active mx-5"
-      >TIRAR!</button>
+      <button @click="tirarDados(1)" class="button is-success is-active mx-5">
+        TIRAR!
+      </button>
+
+      <!-- BOTON DE MAS OPCIONES -->
+      <button v-if="masOpciones == false" @click="masOpciones = !masOpciones" class="button is-warning"> Mas opciones </button>
+      <button v-if="masOpciones == true" @click="masOpciones = !masOpciones" class="button is-warning" > Menos opciones </button>
     </div>
 
     <!-- RESULTADOS -->
     <br />
     <br />
     <div class="resultados mx-6">
-      <h1 class="title is-3 ">RESULTADOS</h1>
+      <h1 class="title is-3">RESULTADOS</h1>
       <div id="resultados-css" class="container">
         <!-- Aqui pintamos todos los resultados, OJO!! ense;amos el array gracias a la funcion "TodosLosResultados", si pusieramos aqui el array no hace na -->
         <div v-for="item in resultados" :key="item">
-          <p
-            v-if="(item == 6) | (item == 5)"
-            class="acierto"
-            id="resultado-css"
-          >
-            {{ item }}
-          </p>
-          <p v-if="item == 1" class="fatal" id="resultado-css">{{ item }}</p>
-          <p v-if="item != 1 && item != 5 && item != 6" id="resultado-css">
-            {{ item }}
-          </p>
+
+          <!-- NO OPCIONES AVANZADAS -->
+          <div v-if="!masOpciones">
+            <p v-if="(item == 6) | (item == 5)" class="acierto resultado-css" > {{ item }} </p>
+            <p v-else-if="item == 1" class="fatal resultado-css" >{{ item }}</p>
+            <p v-else class="resultado-css" >{{ item }}</p>
+          </div>
+
+          <!-- SI OPCIONES AVANZADAS -->
+          <div v-if="masOpciones">
+            <p v-if="(item == AvAcierto) | (item == AvAcierto2) | (item == AvAcierto3)" class="acierto resultado-css" >{{ item }}</p>
+            <p v-else-if="(item == AvFatal) | (item == AvFatal2) | (item == AvFatal3)" class="fatal resultado-css">{{ item }}</p>
+            <p v-else class="resultado-css">{{ item }}</p>
+          </div>
+          
         </div>
       </div>
-      <br>
-      <div class="suma">
-        <h1 class="title">Suma de todo</h1>
-        <p class="subtitle">{{ SumaDetodo }}{{ this.sumaResultado }}</p>
-      </div>
+      <br />
+      <Transition>
+        <div v-if="masOpciones" class="suma card p-2">
+          <h1 class="title">Suma de todo</h1>
+          <p class="subtitle">{{ SumaDetodo }}{{ this.sumaResultado }}</p>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -130,6 +161,13 @@ export default {
       NDeDados: "",
       resultados: [1, 6, 5, 3],
       sumaResultado: 0,
+      masOpciones: false,
+      AvAcierto: null,
+      AvAcierto2: null,
+      AvAcierto3: null,
+      AvFatal: null,
+      AvFatal2: null,
+      AvFatal3: null
     };
   },
   methods: {
@@ -170,12 +208,6 @@ export default {
   background-color: rgb(255, 124, 124);
   border: 1mm ridge rgba(220, 50, 50, 0.6);
 }
-.BGJuegos {
-  background-image: url("https://img.freepik.com/free-vector/white-gold-hexagon-pattern-background_53876-115292.jpg?w=2000");
-  min-height: 100vh;
-  background-position: center;
-  background-size: cover;
-}
 
 #resultados-css {
   display: grid;
@@ -183,9 +215,19 @@ export default {
   grid-column-gap: 3vmin;
 }
 
-#resultado-css {
+.resultado-css {
   padding: 3px;
   margin: 10px;
   text-align: center;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

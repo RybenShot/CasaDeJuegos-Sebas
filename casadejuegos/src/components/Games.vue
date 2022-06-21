@@ -1,49 +1,22 @@
 <template>
   <div>
-    <!-- <div class="columns is-mobile mt-3 mx-3">
-      <button class="column button mx-2">
-        <router-link to="/dados">Dados</router-link>
-      </button>
-      <button class="column button mx-2">
-        <router-link to="/ruleta">Ruleta</router-link>
-      </button>
-    </div>
-
-    <br />
-    <div class="columns is-mobile mx-3">
-      <button class="column button mx-2">
-        <router-link to="/enproceso">Maquina expendedora</router-link>
-      </button>
-      <button class="column button mx-2">
-        <router-link to="/enproceso">Cajero</router-link>
-      </button>
-    </div>
-    <br />
-    <div class="columns is-mobile mx-3">
-      <button class="column button mx-2">
-        <router-link to="/enproceso">Tragaperras</router-link>
-      </button>
-      <button class="column button mx-2">
-        <router-link to="/enproceso">Piedra papel o tijeras</router-link>
-      </button>
-    </div> -->
     <div class="todo">
     <div class="container">
-      <div @click="cambio(1)" class="panel " :class=" {active: img1}" style="background-image: url('https://www.xtrafondos.com/wallpapers/paisaje-digital-en-atardecer-5846.jpg')">
+      <button @click="cambio(1)" class="panel " :class=" {active: img1}" style="background-image: url('https://64.media.tumblr.com/182670cb1647cf3b6f10f9a2690ce9c0/ed598ecd39ff023f-ad/s1280x1920/eff9eb4fd92812f682d5d0186b92cbd5ed69530e.jpg')">
+        <h3><router-link id="links" to="/dados">Juego de dados</router-link></h3> 
+      </button >
+      <button @click="cambio(2)" class="panel" :class=" {active: img2}" style="background-image: url('https://p4.wallpaperbetter.com/wallpaper/717/632/865/cartridge-revolver-russian-roulette-hd-wallpaper-preview.jpg')">
+        <h3><router-link id="links" to="/ruleta">Ruleta rusa</router-link></h3>
+      </button>
+       <button @click="cambio(3)" class="panel" :class=" {active: img3}" style="background-image: url('https://p4.wallpaperbetter.com/wallpaper/400/66/430/artistic-oriental-vending-machine-hd-wallpaper-preview.jpg')">
+        <h3><router-link id="links" to="/enproceso">Maquina Expendedora</router-link></h3>
+      </button>
+      <!--<button @click="cambio(4)" class="panel" :class=" {active: img4}" style="background-image: url('https://www.proandroid.com/wp-content/uploads/2017/04/E36.jpg')">
         <h3>Nombre random</h3>
-      </div >
-      <div @click="cambio(2)" class="panel" :class=" {active: img2}" style="background-image: url('https://fondosmil.com/fondo/2255.jpg')">
+      </button>
+      <button @click="cambio(5)" class="panel" :class=" {active: img5}" style="background-image: url('https://img.freepik.com/foto-gratis/hermoso-camino-madera-que-impresionantes-arboles-coloridos-bosque_181624-5840.jpg?w=2000')">
         <h3>Nombre random</h3>
-      </div>
-      <div @click="cambio(3)" class="panel" :class=" {active: img3}" style="background-image: url('https://fondosmil.com/fondo/11160.jpg')">
-        <h3>Nombre random</h3>
-      </div>
-      <div @click="cambio(4)" class="panel" :class=" {active: img4}" style="background-image: url('https://www.proandroid.com/wp-content/uploads/2017/04/E36.jpg')">
-        <h3>Nombre random</h3>
-      </div>
-      <div @click="cambio(5)" class="panel" :class=" {active: img5}" style="background-image: url('https://img.freepik.com/foto-gratis/hermoso-camino-madera-que-impresionantes-arboles-coloridos-bosque_181624-5840.jpg?w=2000')">
-        <h3>Nombre random</h3>
-      </div>
+      </button> -->
     </div>
     </div>
   </div>
@@ -102,6 +75,18 @@ methods: {
   box-sizing: border-box;
 }
 
+button{
+  border: none;
+}
+
+router-link{
+  color: #fff;
+}
+
+router-link:hover{
+  color: blue;
+}
+
 .todo{
   font-family: "Muli", sans-serif;
   display: flex;
@@ -110,7 +95,6 @@ methods: {
   height: 100%;
   overflow: hidden;
   margin: 0;
-  background: #ccc;
 }
 .container{
   display: flex;
@@ -121,7 +105,7 @@ methods: {
   background-size: auto 110%;
   background-position: center;
   background-repeat: no-repeat;
-  height: 80vh;
+  height: 40vh;
   border-radius: 50px;
   color: #fff;
   cursor: pointer;
@@ -154,6 +138,20 @@ methods: {
   .panel:nth-of-type(5){
     display: none;
   }
+}
+
+#links{
+  color: #EFEFEF;
+  transition: background-color .5s;
+  transition: color .5s;
+  padding: 0.3em;
+  border-bottom: 0.01em solid;
+}
+
+#links:hover{
+  color: #F66B0E;
+  /* background-color: #112B3C; */
+  
 }
 
 </style>
