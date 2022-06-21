@@ -80,7 +80,7 @@
 
         <!-- AVANZADO -->
         <Transition>
-          <div v-if="masOpciones" class="card p-2 mt-2">
+          <div v-show="masOpciones" class="card p-2 mt-2">
             <h3>Avanzado</h3>
             <dir class="columns">
               <div class="column">
@@ -124,15 +124,8 @@
         <!-- Aqui pintamos todos los resultados, OJO!! ense;amos el array gracias a la funcion "TodosLosResultados", si pusieramos aqui el array no hace na -->
         <div v-for="item in resultados" :key="item">
 
-          <!-- NO OPCIONES AVANZADAS -->
-          <div v-if="!masOpciones">
-            <p v-if="(item == 6) | (item == 5)" class="acierto resultado-css" > {{ item }} </p>
-            <p v-else-if="item == 1" class="fatal resultado-css" >{{ item }}</p>
-            <p v-else class="resultado-css" >{{ item }}</p>
-          </div>
-
           <!-- SI OPCIONES AVANZADAS -->
-          <div v-if="masOpciones">
+          <div >
             <p v-if="(item == AvAcierto) | (item == AvAcierto2) | (item == AvAcierto3)" class="acierto resultado-css" >{{ item }}</p>
             <p v-else-if="(item == AvFatal) | (item == AvFatal2) | (item == AvFatal3)" class="fatal resultado-css">{{ item }}</p>
             <p v-else class="resultado-css">{{ item }}</p>
@@ -162,10 +155,11 @@ export default {
       resultados: [1, 6, 5, 3],
       sumaResultado: 0,
       masOpciones: false,
-      AvAcierto: null,
-      AvAcierto2: null,
+      
+      AvAcierto: 6,
+      AvAcierto2: 5,
       AvAcierto3: null,
-      AvFatal: null,
+      AvFatal: 1,
       AvFatal2: null,
       AvFatal3: null
     };
