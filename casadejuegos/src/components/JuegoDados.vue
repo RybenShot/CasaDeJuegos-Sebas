@@ -21,7 +21,7 @@
           <div class="columns is-mobile">
             <div class="column">
               <p class="is-3"><i class="fas fa-dice"></i></p>
-              <p>4 lados</p>
+              <p>4 Lados</p>
               <input
                 type="radio"
                 v-model="NDeLados"
@@ -32,7 +32,7 @@
             </div>
             <div class="column">
               <p><i class="fas fa-dice-d6"></i></p>
-              <p>6 lados</p>
+              <p>6 Lados</p>
               <input
                 type="radio"
                 v-model="NDeLados"
@@ -44,7 +44,7 @@
             </div>
             <div class="column">
               <p><i class="fas fa-dice"></i></p>
-              <p>8 lados</p>
+              <p>8 Lados</p>
               <input
                 type="radio"
                 v-model="NDeLados"
@@ -55,7 +55,7 @@
             </div>
             <div class="column">
               <p><i class="fas fa-dice"></i></p>
-              <p>12 lados</p>
+              <p>12 Lados</p>
               <input
                 type="radio"
                 v-model="NDeLados"
@@ -66,7 +66,7 @@
             </div>
             <div class="column">
               <p><i class="fas fa-dice-d20"></i></p>
-              <p>20 lados</p>
+              <p>20 Lados</p>
               <input
                 type="radio"
                 v-model="NDeLados"
@@ -82,18 +82,18 @@
         <Transition>
           <div v-show="masOpciones" class="card p-2 mt-2">
             <h3>Avanzado</h3>
-            <dir class="columns">
+            <dir class="columns is-mobile">
               <div class="column">
                 <h4>Fatal</h4>
-                <input class="p-2" type="number" v-model="AvFatal" placeholder="Fatal">
-                <input class="p-2" type="number" v-model="AvFatal2" placeholder="Fatal">
-                <input class="p-2" type="number" v-model="AvFatal3" placeholder="Fatal">
+                <input class="p-2 inputs" type="number" v-model="AvFatal" placeholder="Fatal" >
+                <input class="p-2 inputs" type="number" v-model="AvFatal2" placeholder="Fatal">
+                <input class="p-2 inputs" type="number" v-model="AvFatal3" placeholder="Fatal">
               </div>
               <div class="column">
                 <h4>Acierto</h4>
-                <input class="p-2" type="number" v-model="AvAcierto" placeholder="Acierto">
-                <input class="p-2" type="number" v-model="AvAcierto2" placeholder="Acierto">
-                <input class="p-2" type="number" v-model="AvAcierto3" placeholder="Acierto">
+                <input class="p-2 inputs" type="number" v-model="AvAcierto" placeholder="Acierto">
+                <input class="p-2 inputs" type="number" v-model="AvAcierto2" placeholder="Acierto">
+                <input class="p-2 inputs" type="number" v-model="AvAcierto3" placeholder="Acierto">
               </div>
             </dir>
             
@@ -155,7 +155,7 @@ export default {
       resultados: [1, 6, 5, 3],
       sumaResultado: 0,
       masOpciones: false,
-      
+
       AvAcierto: 6,
       AvAcierto2: 5,
       AvAcierto3: null,
@@ -223,5 +223,10 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+.inputs{
+  width: 60px ; 
+  text-align: center
 }
 </style>
